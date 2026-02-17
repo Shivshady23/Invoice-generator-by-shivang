@@ -113,7 +113,6 @@ function InvoiceForm({ existingInvoice, onClose }) {
   // ================= SAVE =================
   const saveInvoice = async () => {
     const payload = {
-      invoiceNumber,
       customerMobileNumber: mobile,
       customerName: name,
       customerAddress: address,
@@ -121,7 +120,8 @@ function InvoiceForm({ existingInvoice, onClose }) {
       products,
       gstSlab,
       totalAmount: finalAmount,
-      amountInWords
+      amountInWords,
+      ...(existingInvoice ? { invoiceNumber } : {})
     };
 
     if (existingInvoice) {
@@ -141,7 +141,11 @@ function InvoiceForm({ existingInvoice, onClose }) {
       </div>
       <div className="top-section">
         <label>Invoice Number:</label>
-        <input value={invoiceNumber} onChange={e => setInvoiceNumber(e.target.value)} />
+        <input
+          value={existingInvoice ? invoiceNumber : ""}
+          placeholder="Auto-generated (IN001, IN002, ...)"
+          readOnly
+        />
 
         <label>Customer Mobile Number:</label>
         <input value={mobile} onChange={e => fetchCustomer(e.target.value)} />
