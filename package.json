@@ -1,4 +1,10 @@
 {
+  "name": "invoice-monorepo",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm --prefix invoice-backend install --omit=dev",
+    "start": "npm --prefix invoice-backend start"
+  },
   "dependencies": {
     "axios": "^1.13.2"
   }

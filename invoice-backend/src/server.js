@@ -19,6 +19,10 @@ app.use(express.json());
 
 connectDB();
 
+app.get("/", (_req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
 app.use("/customer", customerRoutes);
 app.use("/invoice", invoiceRoutes);
 
