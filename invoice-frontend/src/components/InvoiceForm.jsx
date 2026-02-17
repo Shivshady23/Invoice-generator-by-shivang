@@ -30,7 +30,19 @@ function InvoiceForm({ existingInvoice, onClose }) {
       setProducts(existingInvoice.products);
       setGstSlab(existingInvoice.gstSlab);
       setIsExistingCustomer(true);
+      return;
     }
+
+    const fetchNextInvoiceNumber = async () => {
+      try {
+        const res = await api.get("/invoice/next-number");
+        setInvoiceNumber(res.data.invoiceNumber || "");
+      } catch {
+        setInvoiceNumber("");
+      }
+    };
+
+    fetchNextInvoiceNumber();
   }, [existingInvoice]);
 
   // ================= FETCH CUSTOMER =================
@@ -129,7 +141,8 @@ function InvoiceForm({ existingInvoice, onClose }) {
       alert("Invoice Updated 😎");
       onClose();
     } else {
-      await api.post("/invoice", payload);
+      const res = await api.post("/invoice", payload);
+      setInvoiceNumber(res.data?.invoice?.invoiceNumber || invoiceNumber);
       alert("Invoice Saved 😎");
     }
   };
@@ -142,8 +155,7 @@ function InvoiceForm({ existingInvoice, onClose }) {
       <div className="top-section">
         <label>Invoice Number:</label>
         <input
-          value={existingInvoice ? invoiceNumber : ""}
-          placeholder="Auto-generated (IN001, IN002, ...)"
+          value={invoiceNumber}
           readOnly
         />
 

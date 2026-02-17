@@ -11,6 +11,9 @@ const parseInvoiceSequence = (invoiceNumber = "") => {
   return match ? Number(match[1]) : 0;
 };
 
+const buildInvoiceNumber = (sequence) =>
+  `${INVOICE_PREFIX}${String(sequence).padStart(INVOICE_PADDING, "0")}`;
+
 const ensureInvoiceCounter = async () => {
   const existingCounter = await Counter.findById(INVOICE_COUNTER_ID);
   if (existingCounter) return;
@@ -39,7 +42,20 @@ const getNextInvoiceNumber = async () => {
     { new: true, upsert: true }
   );
 
-  return `${INVOICE_PREFIX}${String(counter.seq).padStart(INVOICE_PADDING, "0")}`;
+  return buildInvoiceNumber(counter.seq);
+};
+
+exports.getNextInvoiceNumberPreview = async (_req, res) => {
+  try {
+    await ensureInvoiceCounter();
+
+    const counter = await Counter.findById(INVOICE_COUNTER_ID);
+    const previewNumber = buildInvoiceNumber((counter?.seq || 0) + 1);
+
+    res.json({ invoiceNumber: previewNumber });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to generate invoice number preview" });
+  }
 };
 
 exports.createInvoice = async (req, res) => {
