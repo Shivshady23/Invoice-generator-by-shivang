@@ -1,0 +1,83 @@
+.invoice-list-container {
+  width: 95%;
+  max-width: 1100px;
+  margin: 30px auto;
+  background: #ffffff;
+  padding: 25px;
+  border: 1px solid #ccc;
+}
+
+.invoice-list-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.new-invoice-btn {
+  background: #0d6efd;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.new-invoice-btn:hover {
+  background: #084298;
+}
+
+/* =========================
+   TABLE STYLES
+========================= */
+.invoice-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.invoice-list-table th,
+.invoice-list-table td {
+  border: 1px solid #000;
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.invoice-list-table th {
+  background: #f1f1f1;
+  font-weight: 700;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+.action-col {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.edit-btn {
+  background: #ffc107;
+  border: none;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.edit-btn:hover {
+  background: #d39e00;
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.delete-btn:hover {
+  background: #a71d2a;
+}

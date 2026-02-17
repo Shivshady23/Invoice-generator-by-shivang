@@ -1,0 +1,260 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #f4f6f8;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+.invoice-container {
+  width: 95%;
+  max-width: 1100px;
+  margin: 30px auto;
+  background: #ffffff;
+  padding: 30px;
+  border: 1px solid #ccc;
+}
+
+/* =========================
+   LOGO / HEADER
+========================= */
+.invoice-header {
+  display: flex;
+  justify-content: center;  /* horizontal center */
+  align-items: center;      /* vertical center (just in case) */
+  margin-bottom: 25px;
+}
+
+
+.invoice-logo {
+  max-width: 260px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* =========================
+   TOP DETAILS SECTION
+========================= */
+.top-section {
+  display: grid;
+  grid-template-columns: 180px 1fr 220px 1fr;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.top-section label {
+  font-weight: 600;
+  font-size: 14px;
+  align-self: center;
+}
+
+.top-section input {
+  width: 100%;
+  padding: 6px 8px;
+  border: none;
+  border-bottom: 1px solid #000;
+  font-size: 14px;
+}
+
+.top-section input:focus {
+  outline: none;
+  border-bottom: 2px solid #007bff;
+}
+
+/* =========================
+   TABLE
+========================= */
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.invoice-table th,
+.invoice-table td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.invoice-table th {
+  font-weight: 700;
+  background: #f1f1f1;
+}
+
+.invoice-table input {
+  width: 100%;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+}
+
+.invoice-table input:focus {
+  outline: none;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.add-product-section {
+  margin-top: 10px;
+}
+
+.add-btn {
+  background: #0d6efd;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #084298;
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.delete-btn:hover {
+  background: #a71d2a;
+}
+
+/* =========================
+   GST + TOTAL
+========================= */
+.gst-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.gst-section label {
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.gst-section select,
+.gst-section input {
+  padding: 5px 8px;
+  font-size: 14px;
+}
+
+/* =========================
+   AMOUNT IN WORDS
+========================= */
+.words-section {
+  margin-top: 15px;
+}
+
+.words-section label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.words-section input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #000;
+  font-size: 14px;
+  padding: 6px;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.save-btn {
+  background: #198754;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background: #146c43;
+}
+
+.list-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.list-btn:hover {
+  background: #565e64;
+}
+
+.print-btn {
+  background: #0dcaf0;
+  color: black;
+  border: none;
+  padding: 8px 18px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.print-btn:hover {
+  background: #31d2f2;
+}
+
+/* =========================
+   PRINT MODE (VERY IMPORTANT)
+========================= */
+@media print {
+  body {
+    background: white;
+  }
+
+  .add-btn,
+  .delete-btn,
+  .action-buttons {
+    display: none !important;
+  }
+
+  input,
+  select {
+    border: none !important;
+    outline: none !important;
+  }
+
+  .invoice-container {
+    border: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .invoice-logo {
+    max-width: 220px;
+  }
+}
